@@ -1,0 +1,1 @@
+TYPEWRITTEN_PROMPT_LAYOUT="singleline_verbose"
