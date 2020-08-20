@@ -17,7 +17,7 @@ ENV EDITOR=vim
 RUN apk --no-cache add git vim zsh curl && \
 sed -i 's/bash$/zsh/g' /etc/passwd && \
 addgroup --gid $GID $GROUP && \
-adduser --disabled-password --gecos '' --uid $UID --ingroup $GROUP --shell /bin/zsh -k /etc/skel $USER && \
+adduser --disabled-password --gecos '' --uid $UID --ingroup $GROUP --shell /bin/zsh $USER
 COPY --chown=$USER skel/* $HOME/
 
 USER $USER
