@@ -15,6 +15,7 @@ and installs the following software on top of it.
   * [Vim Plug] is a minimalist Vim plugin manager.
   * [sensible.vim] is a universal set of default settings for Vim.
   * [vim-airline] is a lean & mean status/tabline for vim that's light as air.
+  * [vim-prettier] is a Vim plugin wrapper for prettier, an opinionated code formatter.
   * [coc.nvim] is an intellisense engine for Vim8 & Neovim with full language server protocol support
   * [vue-cli] provides standard tooling for Vue.js development
 
@@ -27,6 +28,7 @@ and installs the following software on top of it.
 [Vim Plug]: https://github.com/junegunn/vim-plug
 [sensible.vim]: https://github.com/tpope/vim-sensible
 [vim-airline]: https://github.com/vim-airline/vim-airline
+[vim-prettier]: https://github.com/prettier/vim-prettier
 [coc.nvim]: https://github.com/neoclide/coc.nvim
 [vue-cli]: https://cli.vuejs.org/
 

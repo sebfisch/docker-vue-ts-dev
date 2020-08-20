@@ -6,11 +6,9 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
-"Plug 'google/vim-maktaba'
-"Plug 'google/vim-glaive'
-"Plug 'google/vim-codefmt'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'prettier/vim-prettier', {'do': 'yarn install'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
@@ -20,11 +18,9 @@ set shiftwidth=2
 set softtabstop=2
 
 let g:airline_theme='luna'
+let g:prettier#autoformat=1
+let g:prettier#autoformat_require_pragma=0
 let g:coc_global_extensions=['coc-tsserver']
-
-"augroup autoformat_settings
-"  autocmd FileType ts,vue AutoFormatBuffer prettier
-"augroup END
 
 " https://github.com/neoclide/coc.nvim#example-vim-configuration
 
