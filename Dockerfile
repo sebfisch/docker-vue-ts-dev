@@ -14,7 +14,7 @@ ENV GID=$GID
 
 ENV EDITOR=vim
 
-RUN apk --no-cache add openssh git vim zsh curl && \
+RUN apk --no-cache add openssh git vim tmux zsh curl && \
 sed -i 's/bash$/zsh/g' /etc/passwd && \
 addgroup --gid $GID $GROUP && \
 adduser --disabled-password --gecos '' --uid $UID --ingroup $GROUP --shell /bin/zsh $USER
