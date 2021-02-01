@@ -5,19 +5,49 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-sensible'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'phanviet/vim-monokai-pro'
+Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-css-color'
 Plug 'prettier/vim-prettier', {'do': 'yarn install'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-set number
+set noshowmode
+set number relativenumber
+set nu rnu
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-let g:airline_theme='luna'
+colorscheme delek
+
+"Lightline is configured to show Git status
+let g:lightline = {
+  \ 'colorscheme': 'delek',
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'readonly', 'filename', 'modified', 'gitstatus' ]
+  \   ]
+  \ },
+  \ 'component_function': {
+  \   'gitstatus': 'FugitiveStatusline'
+  \ }
+\}
+
+set pastetoggle=<leader>p
+
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+
+nnoremap <leader>w :Gwrite<CR>
+
 let g:prettier#autoformat=1
 let g:prettier#autoformat_require_pragma=0
 let g:coc_global_extensions=['coc-tsserver']

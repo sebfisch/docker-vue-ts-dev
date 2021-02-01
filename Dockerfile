@@ -1,20 +1,22 @@
 FROM node:alpine
-CMD zsh --login
+CMD tmux new -s dev
 
-ARG HOME=/home/dev
-ENV HOME=$HOME
-ARG USER=dev
+ARG USER=me
 ENV USER=$USER
-ARG UID=1000
+ARG HOME=/home/$USER
+ENV HOME=$HOME
+ARG UID=501
 ENV UID=$UID
-ARG GROUP=dev
+ARG GROUP=$USER
 ENV GROUP=$GROUP
-ARG GID=1000
+ARG GID=501
 ENV GID=$GID
 
 ENV EDITOR=vim
 
-RUN apk --no-cache add openssh git vim tmux zsh curl && \
+RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
+apk --no-cache add openssh tzdata git vim tmux bash zsh curl fzf ripgrep perl && \
+curl -sfL git.io/antibody | sh -s - -b /usr/local/bin && \
 sed -i 's/bash$/zsh/g' /etc/passwd && \
 addgroup --gid $GID $GROUP && \
 adduser --disabled-password --gecos '' --uid $UID --ingroup $GROUP --shell /bin/zsh $USER
@@ -24,9 +26,6 @@ USER $USER
 
 RUN yarn global add @vue/cli && \
 vim +PlugInstall +qall && \
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
-git clone https://github.com/reobin/typewritten.git $HOME/.oh-my-zsh/custom/themes/typewritten && \
-ln -s $HOME/.oh-my-zsh/custom/themes/typewritten/typewritten.zsh-theme $HOME/.oh-my-zsh/custom/themes/typewritten.zsh-theme && \
-sed -i -E 's/^(ZSH_THEME=).*$/\1"typewritten"/g' $HOME/.zshrc && \
-sed -i -E 's/^(plugins=).*$/\1\(git vi-mode\)/g' $HOME/.zshrc
-
+sed -i 's/delek/monokai_pro/g' $HOME/.vimrc && \
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm && \
+$HOME/.tmux/plugins/tpm/bin/install_plugins
